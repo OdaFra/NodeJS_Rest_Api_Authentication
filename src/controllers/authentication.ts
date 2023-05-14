@@ -32,7 +32,10 @@ export const login = async (req: express.Request, res: express.Response) => {
 
         res.cookie('REST-API-MONGO', user.authentication.sessionToken, { domain: 'localhost', path: '/' });
         
-        return res.status(200).json(user).end();
+        return res.status(200).json({
+            message:`Usuario correctamente autenticado`,
+            body:user
+        }).end();
 
     } catch (error) {
         console.log(error);
@@ -42,7 +45,6 @@ export const login = async (req: express.Request, res: express.Response) => {
 
 
 }
-
 
 //Para registro de usuario
 export const register = async (req: express.Request, res: express.Response) => {
@@ -68,7 +70,10 @@ export const register = async (req: express.Request, res: express.Response) => {
             }
         });
 
-        return res.status(200).json(user).end();
+        return res.status(200).json({
+            message:`Se ha agregado un nuevo usuario`,
+            body:user
+        }).end();
 
     } catch (error) {
         console.log(error);
